@@ -3,34 +3,61 @@ public class Product {
     private String name;
     private double price;
     private String description;
-    private int stock;
+    private Stock stock;
 
-    public Product(String id, String name, double price, String description, int stock) {
+    public Product(String id, String name, double price, String description, int initialStock) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
-        this.stock = stock;
+        this.stock = new Stock(initialStock);
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public String getName() {
+        return name;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public int getStock() { return stock; }
-    public void setStock(int stock) { this.stock = stock; }
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getStockQuantity() {
+        return stock.getQuantity();
+    }
+
+    public void addStock(int quantity) {
+        stock.addStock(quantity);
+    }
 
     public void reduceStock(int quantity) {
-        if (quantity <= stock) {
-            this.stock -= quantity;
-        }
+        stock.reduceStock(quantity);
+    }
+
+    public boolean isStockSufficient(int quantity) {
+        return stock.isStockSufficient(quantity);
     }
 }
